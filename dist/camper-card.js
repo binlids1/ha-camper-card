@@ -27,7 +27,7 @@ const STRINGS = {
     tempOut: 'Außen', tempFreezer: 'Gefrierfach', humIn: 'Luftfeuchte', humHigh: 'zu feucht', airOut: 'lüften', frost: 'Frostgefahr',
     runLeft: 'reicht ca. {}', runFull: 'voll in ca. {}', uMin: 'Min.', uH: 'Std.', uDays: 'Tage', over30: 'über 30 Tage',
     // Editor
-    ed_name: 'Name', ed_vehicle: 'Fahrzeugtyp', ed_outline: 'Umriss', ed_offline: 'Zugewiesen, aber offline', ed_language: 'Sprache',
+    ed_name: 'Name', ed_vehicle: 'Fahrzeugtyp', ed_outline: 'Umriss', ed_flip: 'Seitenansicht spiegeln (Deichsel links)', ed_offline: 'Zugewiesen, aber offline', ed_language: 'Sprache',
     ed_offline_grey: 'Grau mit „offline“ anzeigen', ed_offline_hide: 'Ausblenden', ed_lang_auto: 'Wie Home Assistant',
     ed_battery: 'Batterie: Ladestand', ed_battery_power: 'Batterie: Leistung (BMS)', ed_solar: 'Solarleistung', ed_charger: 'Ladegerät: Schalter',
     ed_charger_power: 'Ladegerät: Leistung (Zwischenstecker)', ed_charger_min_power: 'Ladegerät lädt ab (W)', ed_charger_toggle: 'Ladegerät in der Karte schaltbar',
@@ -74,7 +74,7 @@ const STRINGS = {
     sideView: 'Side view',
     tempOut: 'Outside', tempFreezer: 'Freezer', humIn: 'Humidity', humHigh: 'too humid', airOut: 'ventilate', frost: 'Frost risk',
     runLeft: 'lasts approx. {}', runFull: 'full in approx. {}', uMin: 'min', uH: 'h', uDays: 'days', over30: 'over 30 days',
-    ed_name: 'Name', ed_vehicle: 'Vehicle type', ed_outline: 'Outline', ed_offline: 'Assigned but offline', ed_language: 'Language',
+    ed_name: 'Name', ed_vehicle: 'Vehicle type', ed_outline: 'Outline', ed_flip: 'Flip side view (towbar on the left)', ed_offline: 'Assigned but offline', ed_language: 'Language',
     ed_offline_grey: 'Show grey with “offline”', ed_offline_hide: 'Hide', ed_lang_auto: 'Like Home Assistant',
     ed_battery: 'Battery: state of charge', ed_battery_power: 'Battery: power (BMS)', ed_solar: 'Solar power', ed_charger: 'Charger: switch',
     ed_charger_power: 'Charger: power (smart plug)', ed_charger_min_power: 'Charger counts as charging from (W)', ed_charger_toggle: 'Charger can be switched in the card',
@@ -398,6 +398,8 @@ function normalizeConfig(raw) {
     type: raw.type,
     name: typeof raw.name === 'string' && raw.name.trim() ? raw.name.trim() : null,
     vehicle, outline,
+    // Seitenansicht spiegeln (Zugdeichsel links statt rechts), z. B. für australische Wohnwagen.
+    flip: raw.flip === true,
     offline: raw.offline === 'hide' ? 'hide' : 'grey',
     language: raw.language === 'de' || raw.language === 'en' ? raw.language : 'auto',
     pump_name: pumpName,
@@ -768,7 +770,7 @@ function vehicleEl(d) {
   return s;
 }
 function sceneSVG(hasTilt) {
-  const d = C.d, a = visA();
+  const d = C.d, a = visA(), flip = !!C.cfg.flip;
   const [x0, y0, x1] = d.vb, vw = x1 - x0, vh = 345 - y0;
   const sc = (c, o) => `style="stop-color:${c}${o !== undefined ? `;stop-opacity:${o}` : ''}"`;
   return `<svg class="scene" data-vb="${vw}" viewBox="${x0} ${y0} ${vw} ${vh}" role="img" aria-label="${esc(t('sideView') + ': ' + d.name[C.lang])}"><defs>
@@ -792,12 +794,16 @@ function sceneSVG(hasTilt) {
     <filter id="fSoft" x="-10%" y="-300%" width="120%" height="700%"><feGaussianBlur stdDeviation="4"/></filter>
    </defs>
    ${hasTilt ? `<line x1="${x0}" y1="286" x2="${x1}" y2="286" stroke="var(--secondary-text-color)" stroke-width="1" stroke-dasharray="3 6" opacity=".55"/>` : ''}
+   <g ${flip ? `transform="translate(${x0 + x1} 0) scale(-1 1)"` : ''}>
    <g class="tilt" data-px="${d.pivot}" transform="rotate(${a} ${d.pivot} 286)">
      ${rr(x0 - 300, 286, vw + 600, 70, 0, 'fill="url(#gGround)"')}
      <line x1="${x0 - 300}" y1="286" x2="${x1 + 300}" y2="286" stroke="var(--ground-line)" stroke-width="2"/>
-     ${vehicleEl(d)}
-   </g></svg>`;
+     ${flip ? unmirrorText(vehicleEl(d)) : vehicleEl(d)}
+   </g></g></svg>`;
 }
+/* Ist die Seitenansicht gespiegelt, wird jede Beschriftung um ihre eigene Mitte zurückgespiegelt, damit der Text lesbar bleibt.
+   Alle Texte der Szene sind mittig verankert (text-anchor: middle). */
+const unmirrorText = (svg) => svg.replace(/<text ([^>]*?)\bx="(-?[\d.]+)"/g, (m, pre, x) => `<text ${pre}x="${x}" transform="translate(${2 * x} 0) scale(-1 1)"`);
 function rearSVG() {
   const k = C.cfg.vehicle;
   const body = k === 'caravan' ? '<rect x="28" y="16" width="64" height="50" rx="11" fill="var(--body)" stroke="var(--body-line)" stroke-width="2"/><rect x="40" y="26" width="40" height="15" rx="4" fill="var(--glass-b)"/>'
@@ -809,9 +815,10 @@ function rearSVG() {
 function sideMiniSVG() {
   const d = C.d;
   return `<svg viewBox="0 0 800 330" aria-hidden="true"><line x1="0" y1="286" x2="800" y2="286" stroke="var(--secondary-text-color)" stroke-width="8" stroke-dasharray="14 24" opacity=".6"/>
+   <g ${C.cfg.flip ? 'transform="translate(800 0) scale(-1 1)"' : ''}>
    <g data-mini="pitch" data-px="${d.pivot}" transform="rotate(${miniP()} ${d.pivot} 286)"><path d="${d.body}" fill="var(--body)" stroke="var(--body-line)" stroke-width="10"/>
    ${d.tow ? `<path d="M${d.tow.from} ${d.bottom} L${d.tow.hitch} ${d.bottom}" stroke="var(--metal)" stroke-width="12"/><circle cx="${d.tow.jockey}" cy="270" r="16" fill="var(--tire)"/>` : ''}
-   ${d.wheel.xs.map((x) => `<circle cx="${x}" cy="${286 - d.wheel.r}" r="${d.wheel.r + 4}" fill="var(--tire)"/>`).join('')}</g></svg>`;
+   ${d.wheel.xs.map((x) => `<circle cx="${x}" cy="${286 - d.wheel.r}" r="${d.wheel.r + 4}" fill="var(--tire)"/>`).join('')}</g></g></svg>`;
 }
 
 /* ---------- Übersicht ---------- */
@@ -1261,7 +1268,7 @@ const CARD_VERSION = VERSION;
 const ENT_FIELDS = ['battery', 'battery_power', 'solar', 'charger', 'charger_power', 'fresh', 'fresh2', 'grey', 'gas', 'gas_availability', 'gas2', 'gas2_availability',
   'temp_inside', 'humidity_inside', 'temp_outside', 'temp_fridge', 'temp_freezer', 'pump', 'light_inside', 'light_outside', 'pitch', 'roll'];
 const LV_FIELDS = ['track', 'base', 'max_wedge', 'steps', 'tolerance', 'invert_pitch', 'invert_roll', 'swap_axes', 'offset_pitch', 'offset_roll'];
-const TOP_FIELDS = ['name', 'vehicle', 'outline', 'offline', 'language', 'charger_min_power', 'charger_toggle', 'battery_capacity', 'battery_voltage',
+const TOP_FIELDS = ['name', 'vehicle', 'outline', 'flip', 'offline', 'language', 'charger_min_power', 'charger_toggle', 'battery_capacity', 'battery_voltage',
   'frost_temp', 'humidity_max'];
 /* Eigene Kachelnamen stehen im Formular als name_<Feld>, in der Konfiguration unter names. pump_name aus 0.1 wird zu names.pump. */
 const NAME_FIELDS = NAME_KEYS.map((k) => 'name_' + k);
@@ -1413,6 +1420,7 @@ class CamperCardEditor extends EditorBase {
         { name: 'name', selector: { text: {} } },
         { name: 'vehicle', selector: sel(Object.keys(GROUPS).map((k) => ({ value: k, label: TYPE_NAME[k][lang] }))) },
         { name: 'outline', selector: sel(GROUPS[c.vehicle].map((k) => ({ value: k, label: V[k].name[lang] }))) },
+        { name: 'flip', selector: { boolean: {} } },
         { name: 'offline', selector: sel([{ value: 'grey', label: L('ed_offline_grey') }, { value: 'hide', label: L('ed_offline_hide') }]) },
         { name: 'language', selector: sel([{ value: 'auto', label: L('ed_lang_auto') }, { value: 'de', label: 'Deutsch' }, { value: 'en', label: 'English' }]) },
       ], true),
