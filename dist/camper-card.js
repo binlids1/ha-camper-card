@@ -119,7 +119,7 @@ const CAR_COMMON={type:'caravan',bottom:250,wheel:{xs:[340],r:28},pivot:340,ext:
   tow:{from:584,hitch:752,jockey:700,y:246,beam:'M580 242 L754 244 L754 251 L580 253 Z',cover:'M584 248 L584 226 C584 216 594 212 606 212 L648 214 C668 216 684 230 690 248 Z'},
   steadies:[76,548],hatches:[{x:96,y:178,w:40,h:30,r:5}],filler:{x:524,y:198},
   cut:[{x:236,y:176,w:292,h:70,r:10},{x:536,y:176,w:46,h:70,r:8}],wheelhouse:[{x:300,y:204,w:80,h:36}],
-  bat:{x:242,y:198,w:56,h:38},fresh:{x:388,y:192,w:132,h:46},grey:{x:392,y:252,w:124,h:20,under:true},gas:{x:545,y:184,w:28,h:56},
+  bat:{x:242,y:198,w:56,h:38},fresh:{x:388,y:192,w:132,h:46},grey:{x:140,y:252,w:150,h:20,under:true},gas:{x:545,y:184,w:28,h:56},
   inlet:{x:148,y:204},cable:'M148 211 C146 246 112 270 66 286',cflow:'M148 211 L148 247 L268 247 L268 236',
   lamp:{x:238,y:88},tail:{x:58,y:192,w:5,h:34}};
 /* Fahrerhaus eines großen Transporters: kurzer Vorbau (etwa 0,8 m vor dem Vorderrad), steile Frontscheibe */
@@ -167,7 +167,7 @@ const V={
   tow:{from:640,hitch:768,jockey:720,y:246,beam:'M636 242 L770 244 L770 251 L636 253 Z',cover:'M640 248 L640 226 C640 216 650 212 662 212 L704 214 C724 216 740 230 746 248 Z'},
   steadies:[58,604],hatches:[{x:76,y:178,w:40,h:30,r:5}],filler:{x:578,y:198},
   cut:[{x:220,y:176,w:362,h:70,r:10},{x:592,y:176,w:46,h:70,r:8}],wheelhouse:[{x:322,y:204,w:148,h:36}],
-  bat:{x:228,y:198,w:56,h:38},fresh:{x:478,y:192,w:98,h:46},grey:{x:482,y:252,w:100,h:20,under:true},gas:{x:601,y:184,w:28,h:56},
+  bat:{x:228,y:198,w:56,h:38},fresh:{x:478,y:192,w:98,h:46},grey:{x:132,y:252,w:160,h:20,under:true},gas:{x:601,y:184,w:28,h:56},
   skylights:[{x:470,w:44},{x:88,w:30}],solar:{x:150,w:190,y:56},flow:'M254 56 L254 198',
   inlet:{x:134,y:204},cable:'M134 211 C132 246 98 270 52 286',cflow:'M134 211 L134 247 L254 247 L254 236',
   lamp:{x:220,y:88},tail:{x:40,y:192,w:5,h:34},marker:{x:643,y:202}},
