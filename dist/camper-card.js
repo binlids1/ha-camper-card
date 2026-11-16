@@ -7,7 +7,7 @@
 
 const STRINGS = {
   de: {
-    overview: 'Übersicht', level: 'Ausrichten', battery: 'Batterie', power: 'Leistung', solar: 'Solar', fresh: 'Frischwasser', grey: 'Grauwasser', gas: 'Gas',
+    overview: 'Übersicht', level: 'Ausrichten', battery: 'Batterie', power: 'Leistung', solar: 'Solar', fresh: 'Frischwasser', fresh2: 'Frischwasser 2', grey: 'Grauwasser', gas: 'Gas',
     tempIn: 'Innen', tempFridge: 'Kühlschrank', pump: 'Wasserpumpe', lightIn: 'Licht innen', lightOut: 'Licht außen', charger: 'Ladegerät',
     offline: 'offline', on: 'an', off: 'aus', charging: 'lädt', discharging: 'entlädt', idle: 'Ruhe', tankLow: 'Tank fast leer',
     shortFresh: 'Frisch', shortGrey: 'Grau', approx: 'Allgemeiner Umriss, Annäherung', exag: 'Neigung überhöht', side: 'seitlich', long: 'längs',
@@ -31,7 +31,7 @@ const STRINGS = {
     ed_offline_grey: 'Grau mit „offline“ anzeigen', ed_offline_hide: 'Ausblenden', ed_lang_auto: 'Wie Home Assistant',
     ed_battery: 'Batterie: Ladestand', ed_battery_power: 'Batterie: Leistung (BMS)', ed_solar: 'Solarleistung', ed_charger: 'Ladegerät: Schalter',
     ed_charger_power: 'Ladegerät: Leistung (Zwischenstecker)', ed_charger_min_power: 'Ladegerät lädt ab (W)', ed_charger_toggle: 'Ladegerät in der Karte schaltbar',
-    ed_fresh: 'Frischwasser', ed_grey: 'Grauwasser', ed_gas: 'Gas', ed_gas_availability: 'Gas: Verfügbarkeit prüfen über',
+    ed_fresh: 'Frischwasser', ed_fresh2: 'Frischwasser: zweiter Tank', ed_grey: 'Grauwasser', ed_gas: 'Gas', ed_gas_availability: 'Gas: Verfügbarkeit prüfen über',
     ed_gas2: 'Gas: zweite Flasche', ed_gas2_availability: 'Gas 2: Verfügbarkeit prüfen über',
     ed_g_names: 'Namen der Kacheln', ed_names_help: 'Eigene Beschriftung, in jeder Sprache. Leer lassen für den Standardnamen.',
     ed_temp_inside: 'Temperatur innen', ed_temp_fridge: 'Temperatur Kühlschrank', ed_pump: 'Wasserpumpe oder Wasserhähne', ed_pump_name: 'Name für den Wasserschalter',
@@ -55,7 +55,7 @@ const STRINGS = {
     ed_sw_help: 'Zum Beispiel Kühlschrank, Heizung oder Boiler. Ohne Namen zeigt die Karte den Namen aus Home Assistant.',
   },
   en: {
-    overview: 'Overview', level: 'Levelling', battery: 'Battery', power: 'Power', solar: 'Solar', fresh: 'Fresh water', grey: 'Grey water', gas: 'Gas',
+    overview: 'Overview', level: 'Levelling', battery: 'Battery', power: 'Power', solar: 'Solar', fresh: 'Fresh water', fresh2: 'Fresh water 2', grey: 'Grey water', gas: 'Gas',
     tempIn: 'Inside', tempFridge: 'Fridge', pump: 'Water pump', lightIn: 'Inside light', lightOut: 'Outside light', charger: 'Charger',
     offline: 'offline', on: 'on', off: 'off', charging: 'charging', discharging: 'discharging', idle: 'idle', tankLow: 'Tank almost empty',
     shortFresh: 'Fresh', shortGrey: 'Grey', approx: 'Generic outline, approximation', exag: 'tilt exaggerated', side: 'side', long: 'length',
@@ -78,7 +78,7 @@ const STRINGS = {
     ed_offline_grey: 'Show grey with “offline”', ed_offline_hide: 'Hide', ed_lang_auto: 'Like Home Assistant',
     ed_battery: 'Battery: state of charge', ed_battery_power: 'Battery: power (BMS)', ed_solar: 'Solar power', ed_charger: 'Charger: switch',
     ed_charger_power: 'Charger: power (smart plug)', ed_charger_min_power: 'Charger counts as charging from (W)', ed_charger_toggle: 'Charger can be switched in the card',
-    ed_fresh: 'Fresh water', ed_grey: 'Grey water', ed_gas: 'Gas', ed_gas_availability: 'Gas: check availability via',
+    ed_fresh: 'Fresh water', ed_fresh2: 'Fresh water: second tank', ed_grey: 'Grey water', ed_gas: 'Gas', ed_gas_availability: 'Gas: check availability via',
     ed_gas2: 'Gas: second bottle', ed_gas2_availability: 'Gas 2: check availability via',
     ed_g_names: 'Tile names', ed_names_help: 'Your own label, in any language. Leave empty for the default name.',
     ed_temp_inside: 'Inside temperature', ed_temp_fridge: 'Fridge temperature', ed_pump: 'Water pump or taps', ed_pump_name: 'Name of the water switch',
@@ -119,7 +119,7 @@ const CAR_COMMON={type:'caravan',bottom:250,wheel:{xs:[340],r:28},pivot:340,ext:
   tow:{from:584,hitch:752,jockey:700,y:246,beam:'M580 242 L754 244 L754 251 L580 253 Z',cover:'M584 248 L584 226 C584 216 594 212 606 212 L648 214 C668 216 684 230 690 248 Z'},
   steadies:[76,548],hatches:[{x:96,y:178,w:40,h:30,r:5}],filler:{x:524,y:198},
   cut:[{x:236,y:176,w:292,h:70,r:10},{x:536,y:176,w:46,h:70,r:8}],wheelhouse:[{x:300,y:204,w:80,h:36}],
-  bat:{x:242,y:198,w:56,h:38},fresh:{x:388,y:192,w:132,h:46},gas:{x:545,y:184,w:28,h:56},
+  bat:{x:242,y:198,w:56,h:38},fresh:{x:388,y:192,w:132,h:46},grey:{x:392,y:252,w:124,h:20,under:true},gas:{x:545,y:184,w:28,h:56},
   inlet:{x:148,y:204},cable:'M148 211 C146 246 112 270 66 286',cflow:'M148 211 L148 247 L268 247 L268 236',
   lamp:{x:238,y:88},tail:{x:58,y:192,w:5,h:34}};
 /* Fahrerhaus eines großen Transporters: kurzer Vorbau (etwa 0,8 m vor dem Vorderrad), steile Frontscheibe */
@@ -167,7 +167,7 @@ const V={
   tow:{from:640,hitch:768,jockey:720,y:246,beam:'M636 242 L770 244 L770 251 L636 253 Z',cover:'M640 248 L640 226 C640 216 650 212 662 212 L704 214 C724 216 740 230 746 248 Z'},
   steadies:[58,604],hatches:[{x:76,y:178,w:40,h:30,r:5}],filler:{x:578,y:198},
   cut:[{x:220,y:176,w:362,h:70,r:10},{x:592,y:176,w:46,h:70,r:8}],wheelhouse:[{x:322,y:204,w:148,h:36}],
-  bat:{x:228,y:198,w:56,h:38},fresh:{x:478,y:192,w:98,h:46},gas:{x:601,y:184,w:28,h:56},
+  bat:{x:228,y:198,w:56,h:38},fresh:{x:478,y:192,w:98,h:46},grey:{x:482,y:252,w:100,h:20,under:true},gas:{x:601,y:184,w:28,h:56},
   skylights:[{x:470,w:44},{x:88,w:30}],solar:{x:150,w:190,y:56},flow:'M254 56 L254 198',
   inlet:{x:134,y:204},cable:'M134 211 C132 246 98 270 52 286',cflow:'M134 211 L134 247 L254 247 L254 236',
   lamp:{x:220,y:88},tail:{x:40,y:192,w:5,h:34},marker:{x:643,y:202}},
@@ -340,7 +340,7 @@ function sourceKey(src) {
 /** Konfigurationsname der Entität und interner Schlüssel. gas_availability und gas2_availability werden gesondert behandelt. */
 const ENTITY_KEYS = {
   battery: 'battery', battery_power: 'power', solar: 'solar', charger: 'charger', charger_power: 'chargerPower',
-  fresh: 'fresh', grey: 'grey', gas: 'gas', gas2: 'gas2', temp_inside: 'tempIn', humidity_inside: 'humIn', temp_outside: 'tempOut',
+  fresh: 'fresh', fresh2: 'fresh2', grey: 'grey', gas: 'gas', gas2: 'gas2', temp_inside: 'tempIn', humidity_inside: 'humIn', temp_outside: 'tempOut',
   temp_fridge: 'tempFridge', temp_freezer: 'tempFreezer',
   pump: 'pump', light_inside: 'lightIn', light_outside: 'lightOut', pitch: 'pitch', roll: 'roll',
 };
@@ -348,7 +348,7 @@ const CFG_OF = Object.fromEntries(Object.entries(ENTITY_KEYS).map(([c, k]) => [k
 const BOOL_KEYS = new Set(['charger', 'pump', 'lightIn', 'lightOut']);
 const VEHICLES = ['caravan', 'motorhome', 'van'];
 /** Kacheln und Schalter, deren Beschriftung man unter names: selbst setzen kann (Konfigurationsnamen). */
-const NAME_KEYS = ['battery', 'solar', 'charger', 'fresh', 'grey', 'gas', 'gas2', 'temp_inside', 'humidity_inside', 'temp_outside',
+const NAME_KEYS = ['battery', 'solar', 'charger', 'fresh', 'fresh2', 'grey', 'gas', 'gas2', 'temp_inside', 'humidity_inside', 'temp_outside',
   'temp_fridge', 'temp_freezer', 'pump', 'light_inside', 'light_outside'];
 /** Höchstzahl frei belegbarer Schalter (switches:). */
 const MAX_SWITCHES = 6;
@@ -447,7 +447,7 @@ const t = (k) => (STRINGS[C.lang] && STRINGS[C.lang][k]) ?? STRINGS.en[k] ?? k;
 const nf = (v, d = 0) => new Intl.NumberFormat(C.locale, { minimumFractionDigits: d, maximumFractionDigits: d }).format(v);
 const sgn = (v, d = 1) => { const r = +v.toFixed(d); return (r > 0 ? '+' : r < 0 ? '−' : '') + nf(Math.abs(r), d); };
 const cm = (v) => { const r = round5(v); return nf(r, Number.isInteger(r) ? 0 : 1) + ' cm'; };
-const st = (k) => { let r = C.raw[k] || 'none'; if (r === 'off' && C.cfg.offline === 'hide') r = 'none'; if (k === 'grey' && C.cfg.vehicle === 'caravan') r = 'none'; return r; };
+const st = (k) => { let r = C.raw[k] || 'none'; if (r === 'off' && C.cfg.offline === 'hide') r = 'none'; return r; };
 const val = (k) => C.v[k];
 const unitOf = (k, d) => C.unit[k] || d;
 const pct = (k) => clamp(val(k), 0, 100);
@@ -455,23 +455,35 @@ const visA = () => clamp(-C.anim.p * EX, -MAXA, MAXA);
 const miniP = () => clamp(-C.anim.p * EX, -14, 14);
 const miniR = () => clamp(-C.anim.r * EX, -14, 14);
 const isOff = (s) => !s || s.state === 'unavailable' || s.state === 'unknown';
-/* Beschriftung einer Kachel oder eines Schalters: eigener Name, sonst Standardtext. Bei zwei Gasflaschen „Gas 1“ und „Gas 2“. */
+/* Beschriftung einer Kachel oder eines Schalters: eigener Name, sonst Standardtext. Bei zwei Gasflaschen „Gas 1“ und „Gas 2“,
+   bei zwei Frischwassertanks „Frischwasser 1“ und „Frischwasser 2“. */
 const twoGas = () => !!(C.cfg.entities.gas && C.cfg.entities.gas2);
+const twoFresh = () => !!(C.cfg.entities.fresh && C.cfg.entities.fresh2);
 function nameOf(k, def) {
   const own = C.cfg.names && C.cfg.names[k];
   if (own) return esc(own);
   if (k === 'gas2') return `${t('gas')} 2`;
   if (k === 'gas' && twoGas()) return `${t('gas')} 1`;
+  if (k === 'fresh2') return `${t('fresh')} 2`;
+  if (k === 'fresh' && twoFresh()) return `${t('fresh')} 1`;
   return def !== undefined ? def : t(k);
 }
 /* Kurzname im Tank der Seitenansicht: eigener Name nur, wenn er kurz genug ist. */
 const shortOf = (k, def) => { const own = C.cfg.names && C.cfg.names[k]; return own ? (own.length <= 10 ? esc(own) : '') : def; };
+/* Platz eines Frischwassertanks in der Seitenansicht: ein Tank belegt den ganzen Platz, zwei teilen ihn sich nebeneinander. */
+function freshBox(k) {
+  const base = C.d.fresh, both = st('fresh') !== 'none' && st('fresh2') !== 'none';
+  if (!both) return base;
+  const gap = 4, w = (base.w - gap) / 2;
+  return { ...base, x: k === 'fresh' ? base.x : base.x + w + gap, w };
+}
+const tankBox = (k) => (k === 'fresh' || k === 'fresh2' ? freshBox(k) : C.d[k]);
 /* Temperatur in °C, auch wenn der Sensor in °F misst. */
 const degC = (k) => (/F/.test(unitOf(k, '°C')) ? (val(k) - 32) * 5 / 9 : val(k));
 /* Frostgefahr für einen Tank mit Wasser. Für Tanks im Aufbau zählt zuerst die Innentemperatur, für Tanks unter dem Boden
    zuerst die Außentemperatur. Ergebnis: Schlüssel der maßgeblichen Temperatur oder null. */
 function frostOf(k) {
-  const b = C.d[k];
+  const b = tankBox(k);
   if (!C.cfg.frost_warning || !b || st(k) !== 'ok' || val(k) <= 2) return null;
   for (const tk of b.under ? ['tempOut', 'tempIn'] : ['tempIn', 'tempOut']) if (st(tk) === 'ok') return degC(tk) < C.cfg.frost_temp ? tk : null;
   return null;
@@ -615,8 +627,10 @@ function tankEl(id, b, color, p, state, shortName, warn) {
   const fit = b.under ? `<path d="M${b.x + 12} ${b.y - 6} L${b.x + 12} ${b.y + b.h} M${b.x + b.w - 12} ${b.y - 6} L${b.x + b.w - 12} ${b.y + b.h}" stroke="var(--metal)" stroke-width="3"/>`
     : rr(b.x + b.w * 0.7, b.y - 5, 12, 6, 2, 'fill="var(--tank-line)"');
   const line = warn ? 'var(--c-warn)' : 'var(--tank-line)';
-  const label = state === 'off' ? `<text class="pct${b.under ? ' not-small' : ''}" x="${cx}" y="${cy}" style="font-weight:500">${t('offline')}</text>`
-    : `<text class="pct not-small" x="${cx}" y="${cy}">${b.w >= 76 && shortName ? shortName + ' ' : ''}${nf(p)} %</text>${b.under ? '' : `<text class="pct only-small" x="${cx}" y="${cy}">${nf(p)} %</text>`}`;
+  // Schmale Tanks (zwei Frischwassertanks nebeneinander) zeigen nur die Zahl; eine einzelne Ziffer als Kurzname passt schon ab 56 breit.
+  const unit = b.w < 40 ? '' : ' %', showShort = shortName && (b.w >= 76 || (shortName.length <= 2 && b.w >= 56));
+  const label = state === 'off' ? `<text class="pct${b.under ? ' not-small' : ''}" x="${cx}" y="${cy}" style="font-weight:500">${b.w < 40 ? '–' : t('offline')}</text>`
+    : `<text class="pct not-small" x="${cx}" y="${cy}">${showShort ? shortName + (shortName.length <= 2 ? ': ' : ' ') : ''}${nf(p)}${unit}</text>${b.under ? '' : `<text class="pct only-small" x="${cx}" y="${cy}">${nf(p)}${unit}</text>`}`;
   return `<clipPath id="ct${id}">${rr(b.x, b.y, b.w, b.h, r)}</clipPath>${b.under ? '' : fit}${rr(b.x, b.y, b.w, b.h, r, 'fill="var(--tank)"')}${inner}
     ${rr(b.x + 5, b.y + 4, Math.max(5, b.w * 0.07), b.h - 8, 2.5, 'fill="#fff" opacity=".28"')}${b.under ? fit : ''}
     ${rr(b.x, b.y, b.w, b.h, r, `fill="none" stroke="${line}" stroke-width="${warn ? 2.2 : 1.3}"`)}${label}`;
@@ -677,7 +691,7 @@ function inletEl(d, active) {
     <circle cx="${x}" cy="${y}" r="4.5" fill="${active ? 'var(--c-grid)' : 'var(--metal)'}"/>`;
 }
 function vehicleEl(d) {
-  const fresh = st('fresh'), grey = st('grey'), bat = st('battery'), sol = st('solar');
+  const grey = st('grey'), bat = st('battery'), sol = st('solar');
   const liOn = st('lightIn') === 'ok' && val('lightIn'), loOn = st('lightOut') === 'ok' && val('lightOut');
   const W = d.wheel, cy = 286 - W.r, src = sources();
   let s = `<ellipse cx="${(d.ext[0] + d.ext[1]) / 2}" cy="287" rx="${(d.ext[1] - d.ext[0]) / 2 + 8}" ry="6" fill="#000" opacity=".25" filter="url(#fSoft)"/>`;
@@ -725,7 +739,15 @@ function vehicleEl(d) {
   (d.wheelhouse || []).forEach((w) => { const yb = w.y + w.h; s += `<path d="M${w.x} ${yb} L${w.x} ${yb - 14} Q${w.x} ${w.y} ${w.x + w.w / 2} ${w.y} Q${w.x + w.w} ${w.y} ${w.x + w.w} ${yb - 14} L${w.x + w.w} ${yb} Z" fill="var(--cut-line)" opacity=".5"/>`; });
   // Frostgefahr: Rand in Warnfarbe und eine kleine Schneeflocke oben rechts im Tank.
   const snow = (b) => `<g class="not-small" transform="translate(${b.x + b.w - 18} ${b.y + 3}) scale(.6)" fill="none" stroke="var(--c-cold)" stroke-width="2.6" stroke-linecap="round">${IC.snow}</g>`;
-  if (fresh !== 'none') s += tankEl('Fresh', d.fresh, 'var(--c-water)', fresh === 'ok' ? pct('fresh') : 0, fresh, shortOf('fresh', t('shortFresh')), fresh === 'ok' && (val('fresh') <= 10 || !!frostOf('fresh'))) + (frostOf('fresh') ? snow(d.fresh) : '');
+  // Frischwasser: ein Tank an seinem Platz, zwei nebeneinander im selben Fach (Kurzname dann „1“ und „2“).
+  const bothFresh = st('fresh') !== 'none' && st('fresh2') !== 'none';
+  for (const k of ['fresh', 'fresh2']) {
+    const fs = st(k);
+    if (fs === 'none') continue;
+    const fb = freshBox(k), id = k === 'fresh' ? 'Fresh' : 'Fresh2';
+    const short = bothFresh ? shortOf(k, k === 'fresh' ? '1' : '2') : shortOf(k, t('shortFresh'));
+    s += tankEl(id, fb, 'var(--c-water)', fs === 'ok' ? pct(k) : 0, fs, short, fs === 'ok' && (val(k) <= 10 || !!frostOf(k))) + (frostOf(k) ? snow(fb) : '');
+  }
   if (d.grey && grey !== 'none') s += tankEl('Grey', d.grey, 'var(--c-grey)', grey === 'ok' ? pct('grey') : 0, grey, shortOf('grey', t('shortGrey')), grey === 'ok' && (val('grey') >= 85 || !!frostOf('grey'))) + (frostOf('grey') ? snow(d.grey) : '');
   // Gas: eine Flasche an ihrem Platz, zwei schmalere nebeneinander im selben Fach.
   const bottles = ['gas', 'gas2'].filter((k) => st(k) !== 'none');
@@ -820,9 +842,11 @@ function tilesHTML() {
     const sub = src.chargerActive ? t('chCharging') : (swOk && val('charger') ? t('chOnIdle') : (swOk ? t('off') : ''));
     out.push(tile(cpOk ? 'chargerPower' : 'charger', 'plug', 'var(--c-grid)', nameOf('charger'), v, cpOk ? unitOf('chargerPower', 'W') : '', '', sub).replace(`data-tile="${cpOk ? 'chargerPower' : 'charger'}"`, 'data-tile="charger"'));
   }
-  const f = st('fresh'), ff = frostOf('fresh');
-  if (f === 'off') out.push(offTile('fresh', 'drop', nameOf('fresh')));
-  else if (f === 'ok') { const c = val('fresh') <= 10 ? 'var(--c-warn)' : 'var(--c-water)'; out.push(tile('fresh', 'drop', c, nameOf('fresh'), nf(val('fresh')), '%', barOf(val('fresh'), c), ff ? frostTxt(ff) : '', true)); }
+  for (const k of ['fresh', 'fresh2']) {
+    const f = st(k), ff = frostOf(k);
+    if (f === 'off') out.push(offTile(k, 'drop', nameOf(k)));
+    else if (f === 'ok') { const c = val(k) <= 10 ? 'var(--c-warn)' : 'var(--c-water)'; out.push(tile(k, 'drop', c, nameOf(k), nf(val(k)), '%', barOf(val(k), c), ff ? frostTxt(ff) : '', true)); }
+  }
   const g = st('grey'), gf = frostOf('grey');
   if (g === 'off') out.push(offTile('grey', 'grey', nameOf('grey')));
   else if (g === 'ok') { const c = val('grey') >= 85 ? 'var(--c-warn)' : 'var(--c-grey)'; out.push(tile('grey', 'grey', c, nameOf('grey'), nf(val('grey')), '%', barOf(val('grey'), c), gf ? frostTxt(gf) : '', true)); }
@@ -856,7 +880,9 @@ function actsHTML() {
     if (s === 'none' || (k === 'charger' && !C.cfg.charger_toggle)) return '';
     const on = s === 'ok' && val(k);
     let sub = s === 'off' ? t('offline') : (on ? t('on') : t('off')), cls = '';
-    if (k === 'pump' && s === 'ok' && st('fresh') === 'ok' && val('fresh') <= 5) { sub = t('tankLow'); cls = 'warn'; }
+    // Bei zwei Frischwassertanks gilt „fast leer“ erst, wenn alle Tanks mit Messwert fast leer sind.
+    const water = ['fresh', 'fresh2'].filter((w) => st(w) === 'ok');
+    if (k === 'pump' && s === 'ok' && water.length && water.every((w) => val(w) <= 5)) { sub = t('tankLow'); cls = 'warn'; }
     return actBtn(`data-k="${k}" data-fid="act-${k}"`, c, on, s === 'off', ic(icon, 17), nameOf(k), sub, cls);
   }).join('');
   // Frei belegbare Schalter: Name aus der Konfiguration, sonst aus Home Assistant. Symbol über ha-icon, sonst ein eigenes.
@@ -1232,7 +1258,7 @@ const CARD_VERSION = VERSION;
 
 
 
-const ENT_FIELDS = ['battery', 'battery_power', 'solar', 'charger', 'charger_power', 'fresh', 'grey', 'gas', 'gas_availability', 'gas2', 'gas2_availability',
+const ENT_FIELDS = ['battery', 'battery_power', 'solar', 'charger', 'charger_power', 'fresh', 'fresh2', 'grey', 'gas', 'gas_availability', 'gas2', 'gas2_availability',
   'temp_inside', 'humidity_inside', 'temp_outside', 'temp_fridge', 'temp_freezer', 'pump', 'light_inside', 'light_outside', 'pitch', 'roll'];
 const LV_FIELDS = ['track', 'base', 'max_wedge', 'steps', 'tolerance', 'invert_pitch', 'invert_roll', 'swap_axes', 'offset_pitch', 'offset_roll'];
 const TOP_FIELDS = ['name', 'vehicle', 'outline', 'offline', 'language', 'charger_min_power', 'charger_toggle', 'battery_capacity', 'battery_voltage',
@@ -1397,8 +1423,8 @@ class CamperCardEditor extends EditorBase {
         { name: 'battery_capacity', selector: num(0, 2000, 1, 'Ah') }, { name: 'battery_voltage', selector: num(6, 60, 0.1, 'V') },
       ]),
       g('g_water', [
-        { name: 'fresh', selector: NUMERIC },
-        ...(c.vehicle === 'caravan' ? [] : [{ name: 'grey', selector: NUMERIC }]),
+        { name: 'fresh', selector: NUMERIC }, { name: 'fresh2', selector: NUMERIC },
+        { name: 'grey', selector: NUMERIC },
         { name: 'gas', selector: NUMERIC }, { name: 'gas_availability', selector: { entity: {} } },
         { name: 'gas2', selector: NUMERIC }, { name: 'gas2_availability', selector: { entity: {} } },
       ]),
@@ -1424,7 +1450,7 @@ class CamperCardEditor extends EditorBase {
         { name: 'tolerance', selector: num(0, 2, 0.1, '°') },
         { name: 'invert_pitch', selector: { boolean: {} } }, { name: 'invert_roll', selector: { boolean: {} } }, { name: 'swap_axes', selector: { boolean: {} } },
       ]),
-      g('g_names', NAME_FIELDS.filter((f) => !(f === 'name_grey' && c.vehicle === 'caravan')).map((f) => ({ name: f, selector: { text: {} } }))),
+      g('g_names', NAME_FIELDS.map((f) => ({ name: f, selector: { text: {} } }))),
     ];
   }
   _update() {
